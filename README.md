@@ -1,73 +1,208 @@
-# Welcome to your Lovable project
+# 🚂 RailLo Event Hub
 
-## Project info
+A modern **Event Management Web Application** built using React and Firebase that allows students to explore, register, and participate in college events seamlessly.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+---
 
-## How can I edit this code?
+## 🌟 Features
 
-There are several ways of editing your application.
+### 🔐 Authentication & Security
 
-**Use Lovable**
+* Email OTP Verification (Custom OTP System)
+* Secure login & signup using Firebase Authentication
+* Real-time verification system
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+### 🎉 Event Management
 
-Changes made via Lovable will be committed automatically to this repo.
+* Browse all college events
+* Register for events instantly
+* View event details (date, time, venue, description)
+* Track registered events
 
-**Use your preferred IDE**
+### 🧑‍💼 Admin Panel
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+* Create, update, and delete events
+* View registered participants
+* Manage event data in real-time
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### 🔔 Notifications
 
-Follow these steps:
+* Event updates and reminders
+* Registration confirmation alerts
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### ⚡ Real-Time Updates
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+* Firebase Firestore integration
+* Instant data sync across users
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React.js
+* Tailwind CSS
+
+### Backend / Database
+
+* Firebase Authentication
+* Firebase Firestore
+* Firebase Functions
+
+### Email Service
+
+* Nodemailer / SendGrid (for OTP emails)
+
+---
+
+## 📁 Project Structure
+
+```
+railLo-event-hub/
+│
+├── public/
+├── src/
+│   ├── components/
+│   │   ├── OTPForm.jsx
+│   │   ├── EventCard.jsx
+│   │   └── Navbar.jsx
+│   │
+│   ├── pages/
+│   │   ├── Login.jsx
+│   │   ├── Dashboard.jsx
+│   │   └── EventDetails.jsx
+│   │
+│   ├── services/
+│   │   ├── firebase.js
+│   │   └── api.js
+│   │
+│   └── App.jsx
+│
+├── functions/ (Firebase Functions)
+│   └── sendOTP.js
+│
+├── README.md
+└── package.json
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 🔄 OTP Verification Flow
 
-**Use GitHub Codespaces**
+1. User enters email
+2. System generates a 6-digit OTP
+3. OTP is sent via email
+4. OTP stored in Firestore with timestamp
+5. User enters OTP
+6. Backend verifies OTP
+7. Access granted if valid & not expired (5 mins)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## ⚙️ Setup Instructions
 
-This project is built with:
+### 1️⃣ Clone Repository
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```
+git clone https://github.com/your-username/raillo-event-hub.git
+cd raillo-event-hub
+```
 
-## How can I deploy this project?
+### 2️⃣ Install Dependencies
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```
+npm install
+```
 
-## Can I connect a custom domain to my Lovable project?
+### 3️⃣ Firebase Setup
 
-Yes, you can!
+* Go to Firebase Console
+* Create a project
+* Enable Authentication (Email/Password)
+* Enable Firestore Database
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### 4️⃣ Add Firebase Config
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Create `firebase.js` inside `/services`:
+
+```js
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT",
+  projectId: "YOUR_PROJECT_ID",
+};
+
+export const app = initializeApp(firebaseConfig);
+```
+
+---
+
+### 5️⃣ Run Project
+
+```
+npm start
+```
+
+---
+
+## 🔐 Firestore Schema
+
+### OTP Collection
+
+```
+otp/
+  email:
+    otp: 123456
+    createdAt: timestamp
+```
+
+### Events Collection
+
+```
+events/
+  eventId:
+    title
+    description
+    date
+    participants[]
+```
+
+---
+
+## 🚀 Deployment
+
+### Frontend
+
+* Vercel / Netlify
+
+### Backend
+
+* Firebase Functions
+
+---
+
+## 📸 Screenshots
+
+(Add your UI screenshots here)
+
+---
+
+## 💡 Future Enhancements
+
+* 📱 Mobile App (Flutter)
+* 🎟️ QR Code Entry System
+* 📊 Analytics Dashboard
+* 🏆 Leaderboard & Certificates
+* 🔔 Push Notifications
+
+---
+
+## 👨‍💻 Developer
+
+**Manoj (RailLo Creator)**
+Building smart solutions for college students 🚀
+
+---
